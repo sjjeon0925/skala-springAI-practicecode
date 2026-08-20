@@ -1,0 +1,17 @@
+### ch10_toolsafe — 교재 11장 · Tool 안전 — 승인 게이트 · 감사
+### VS Code 의 REST Client 확장에서 각 요청 위 [Send Request] 를 누른다.
+### 먼저 ./gradlew bootRun 으로 앱을 띄운다.
+
+@host = http://localhost:8080
+
+### 환불 요청 — 즉시 실행되지 않는다
+GET http://localhost:8080/ch10/ask?q=주문 12345 환불해 주세요
+
+### 담당자 화면 — 대기 목록
+GET http://localhost:8080/ch10/approvals
+
+### 승인 (위에서 받은 번호로 바꾼다)
+POST http://localhost:8080/ch10/approvals/approve?id=AP-1001
+
+### 상태 조회도 도구로
+GET http://localhost:8080/ch10/ask?q=AP-1001 처리됐나요

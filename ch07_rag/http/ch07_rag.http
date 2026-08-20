@@ -1,0 +1,20 @@
+### ch07_rag — 교재 8장 · RAG 기본
+### VS Code 의 REST Client 확장에서 각 요청 위 [Send Request] 를 누른다.
+### 먼저 ./gradlew bootRun 으로 앱을 띄운다.
+
+@host = http://localhost:8080
+
+### ① 샘플 문서 인제스트 (먼저 실행)
+POST http://localhost:8080/ch07/ingest-samples
+
+### ② 근거로 답한다 — sources 가 함께 나온다
+GET http://localhost:8080/ch07/ask?q=단순 변심 반품은 며칠 이내인가요
+
+### ③ 검색만 따로 본다
+GET http://localhost:8080/ch07/retrieve?q=제주도 배송비
+
+### ④ 문서에 없는 것 — 지어내지 않는다
+GET http://localhost:8080/ch07/ask?q=연차는 며칠인가요
+
+### ⑤ 부서 필터
+GET http://localhost:8080/ch07/ask?q=반품 규정&dept=CS

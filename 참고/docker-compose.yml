@@ -1,0 +1,34 @@
+# ============================================================
+# STEP 06 - 벡터 DB(pgvector) 로컬 실행용 Compose 파일
+#
+#   docker compose up -d      # 기동
+#   docker compose down       # 중지 (데이터는 볼륨에 남음)
+#   docker compose down -v    # 중지 + 데이터까지 완전 삭제
+#
+# STEP 09(평가)도 같은 DB를 사용하므로, STEP 09를 실행할 때는
+# 이 컨테이너를 그대로 켜 두면 된다.
+# ============================================================
+services:
+  pgvector:
+    # 일반 postgres 이미지가 아니라 pgvector 확장이 미리 설치된 이미지를 쓴다.
+    # 벡터 타입과 유사도 연산자를 제공하는 것이 이 확장이다.
+    image: pgvector/pgvector:pg17
+    container_name: spring-ai-pgvector
+    environment:
+      # 컨테이너 최초 생성 시 이 값으로 DB와 계정이 만들어진다.
+      # application.yml의 datasource 설정과 반드시 일치시켜야 한다.
+      POSTGRES_DB: springai
+      POSTGRES_USER: springai
+      POSTGRES_PASSWORD: springai
+    ports:
+      # "호스트:컨테이너" — 로컬에서 localhost:5432로 접속한다.
+      # 이미 5432를 쓰는 PostgreSQL이 있다면 "15432:5432" 처럼 바꾸고
+      # application.yml의 url도 함께 수정한다.
+      - "5432:5432"
+    volumes:
+      # 명명 볼륨에 데이터 디렉터리를 보관한다.
+      # 이게 없으면 컨테이너를 지울 때 적재한 벡터가 모두 사라진다.
+      - spring-ai-pgdata:/var/lib/postgresql/data
+
+volumes:
+  spring-ai-pgdata:

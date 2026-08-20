@@ -1,0 +1,18 @@
+# 강의 원본 PDF — 저작권 문제로 public 리포에는 올리지 않는다
+SpringAI 이해 및 활용_202608.pdf
+
+# OS
+.DS_Store
+
+# Gradle / Java 빌드 산출물 (각 챕터 폴더의 .gitignore와 중복이지만 최상위도 방어)
+build/
+.gradle/
+out/
+bin/
+*.log
+.env
+
+# IDE
+.idea/
+*.iml
+.vscode/*.local.json

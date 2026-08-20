@@ -1,0 +1,32 @@
+### ch06_advanced — 교재 7장 · 워크플로 패턴
+### VS Code 의 REST Client 확장에서 각 요청 위 [Send Request] 를 누른다.
+### 먼저 ./gradlew bootRun 으로 앱을 띄운다.
+
+@host = http://localhost:8080
+
+### 라우팅 — 유형별로 다른 경로
+GET http://localhost:8080/ch06/route?q=반품 규정이 어떻게 되나요
+
+###
+GET http://localhost:8080/ch06/route?q=배포 후 응답이 5초로 늘었어요
+
+###
+GET http://localhost:8080/ch06/route?q=세 번이나 잘못 배송됐습니다
+
+### 병렬 요약 — 전용 풀이 동시 호출을 묶는다
+POST http://localhost:8080/ch06/summarize-all
+Content-Type: application/json
+
+["첫 번째 문서 본문 ...","두 번째 문서 본문 ...","세 번째 문서 본문 ..."]
+
+### 평가-교정 루프
+GET http://localhost:8080/ch06/write?topic=사내 코드 리뷰 문화&rounds=2
+
+### 오케스트레이터-워커
+GET http://localhost:8080/ch06/orchestrate?goal=신규 입사자 온보딩 문서 목차 만들기
+
+### 캐시 — 두 번 던져 본다
+GET http://localhost:8080/ch06/cached?q=반품은 며칠 이내인가요
+
+###
+GET http://localhost:8080/ch06/cached?q=반품은 며칠 이내인가요

@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: ch08_ragadv
+
+  ai:
+    openai:
+      # 키는 소스에 넣지 않는다.  export OPENAI_API_KEY="sk-..."
+      # 기본값이 있어 키가 없어도 앱은 뜬다 — 실제 모델 호출 시점에만 401 이 난다.
+      api-key: ${OPENAI_API_KEY:not-set}
+      chat:
+        options:
+          model: gpt-4o-mini
+          temperature: 0.7
+      embedding:
+        options:
+          model: text-embedding-3-small
+
+    # 운영에서는 프롬프트 원문 로깅을 반드시 끈다(개인정보가 그대로 쌓인다).
+    chat:
+      observations:
+        log-prompt: false
+      client:
+        observations:
+          log-prompt: false
+
+server:
+  port: 8080
+
+# ── API 문서 · Swagger UI ──────────────────────────────────
+#   화면 http://localhost:8080/swagger-ui.html   문서 /v3/api-docs
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: alpha
+    tags-sorter: alpha
+    display-request-duration: true
+    doc-expansion: none
+  default-produces-media-type: application/json
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  metrics:
+    tags:
+      application: ch08_ragadv
+
+logging:
+  level:
+    com.skala.ch08: DEBUG

@@ -1,0 +1,24 @@
+dependencies {
+    implementation platform("org.springframework.ai:spring-ai-bom:2.0.0")
+
+    implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+
+    // pgvector VectorStore가 내부적으로 JdbcTemplate으로 SQL을 실행하므로 필요하다.
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+
+    // 채팅 모델 + 임베딩 모델을 모두 이 스타터가 제공한다.
+    // (RAG에서는 문서/질문을 벡터로 바꾸는 임베딩 모델이 반드시 필요하다)
+    implementation 'org.springframework.ai:spring-ai-starter-model-openai'
+
+    // VectorStore 구현체. 테이블 자동 생성과 유사도 검색을 담당한다.
+    implementation 'org.springframework.ai:spring-ai-starter-vector-store-pgvector'
+
+    // Spring AI 2.0: QuestionAnswerAdvisor는 별도 모듈에 포함된다.
+    // (1.x에서는 코어에 있었으나 2.0에서 분리되었다. 없으면 컴파일 에러가 난다)
+    implementation 'org.springframework.ai:spring-ai-vector-store-advisor'
+
+    // JDBC 드라이버. 컴파일 시점에는 필요 없고 실행 시에만 필요해 runtimeOnly.
+    runtimeOnly 'org.postgresql:postgresql'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}

@@ -1,0 +1,22 @@
+# pgvector 로 바꿔 볼 때만 쓴다. 기본 실행에는 필요 없다.
+#   docker compose up -d
+services:
+  pgvector:
+    image: pgvector/pgvector:pg17
+    container_name: springai-pgvector
+    environment:
+      POSTGRES_DB: springai
+      POSTGRES_USER: springai
+      POSTGRES_PASSWORD: springai
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U springai"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  pgdata:

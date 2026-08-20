@@ -1,0 +1,12 @@
+[
+  {"q": "단순 변심 반품은 며칠 이내인가요?", "must": ["7일"], "src": "return-policy"},
+  {"q": "제주도는 배송비가 더 드나요?", "must": ["추가"], "src": "shipping-policy"},
+  {"q": "골드 등급 적립률은?", "must": ["3%"], "src": "membership"},
+  {"q": "우주 배송도 되나요?", "must": ["확인되지"], "src": null},
+  {"q": "물건 돌려보내려면 며칠 안에 해야 해요?", "must": ["7일"], "src": "return-policy"},
+  {"q": "실버 등급 적립률은 몇 %인가요?", "must": ["1%"], "src": "membership"},
+  {"q": "수도권 배송은 보통 며칠 걸리나요?", "must": ["1~2영업일"], "src": "shipping-policy"},
+  {"q": "단순 변심 반품 배송비는 누가 부담하나요?", "must": ["고객"], "src": "return-policy"},
+  {"q": "도서산간 지역도 배송비가 추가되나요?", "must": ["추가"], "src": "shipping-policy"},
+  {"q": "해외 직구 상품도 배송되나요?", "must": ["확인되지"], "src": null}
+]

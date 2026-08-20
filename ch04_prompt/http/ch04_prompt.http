@@ -1,0 +1,31 @@
+### ch04_prompt — 교재 5장 · 프롬프트와 스트리밍
+### VS Code 의 REST Client 확장에서 각 요청 위 [Send Request] 를 누른다.
+### 먼저 ./gradlew bootRun 으로 앱을 띄운다.
+
+@host = http://localhost:8080
+
+### Few-shot 분류
+GET http://localhost:8080/ch04/classify?q=결제가 두 번 됐어요
+
+###
+GET http://localhost:8080/ch04/classify?q=아직도 배송이 안 왔는데요
+
+### CoT — 중간 사고 과정은 출력하지 않는다
+GET http://localhost:8080/ch04/reason?q=주문이 3주째 배송중인데 원인이 뭘까
+
+### 프롬프트 4요소
+POST http://localhost:8080/ch04/structured
+Content-Type: text/plain
+
+사내 배포 파이프라인을 Jenkins 에서 GitHub Actions 로 옮겼다.
+빌드 시간이 12분에서 4분으로 줄었고, 캐시 적중률은 80% 다.
+
+### 리소스 파일 템플릿으로 코드 리뷰
+POST http://localhost:8080/ch04/review?lang=Java
+Content-Type: text/plain
+
+public String get(String id){ return repo.findById(id).get().getName(); }
+
+### 스트리밍(SSE)
+GET http://localhost:8080/ch04/stream?q=Spring AI를 소개해줘
+Accept: text/event-stream

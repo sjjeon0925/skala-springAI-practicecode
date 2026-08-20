@@ -1,0 +1,20 @@
+### ch09_tools — 교재 10장 · Tool Calling
+### VS Code 의 REST Client 확장에서 각 요청 위 [Send Request] 를 누른다.
+### 먼저 ./gradlew bootRun 으로 앱을 띄운다.
+
+@host = http://localhost:8080
+
+### 도구 호출 없음
+GET http://localhost:8080/ch09/ask?q=안녕하세요
+
+### currentWeather 호출
+GET http://localhost:8080/ch09/ask?q=서울 날씨 어때
+
+### orderStatus 호출 — 본인 주문
+GET http://localhost:8080/ch09/ask?q=주문 12345 어디쯤이야
+
+### 남의 주문 — 차단
+GET http://localhost:8080/ch09/ask?q=주문 99999 알려줘
+
+### 도구가 불렸는지 · 토큰 사용량까지
+GET http://localhost:8080/ch09/ask-verbose?q=서울 날씨 어때

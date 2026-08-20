@@ -1,0 +1,14 @@
+### ch03_chatclient — 교재 4장 · ChatClient 와 용도별 빈
+### VS Code 의 REST Client 확장에서 각 요청 위 [Send Request] 를 누른다.
+### 먼저 ./gradlew bootRun 으로 앱을 띄운다.
+
+@host = http://localhost:8080
+
+### 가장 기본 — 프롬프트 하나
+GET http://localhost:8080/ch03/ask?q=Spring AI를 한 문장으로 설명해줘
+
+### 호출 시점에 system 을 덧붙인다
+GET http://localhost:8080/ch03/ask-as?role=보안 담당자&q=RAG 도입 시 주의점은
+
+### 템플릿 파라미터 바인딩 — 문자열 연결이 아니다
+GET http://localhost:8080/ch03/translate?text=오늘 배송이 지연되었습니다&lang=영어

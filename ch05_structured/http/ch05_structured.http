@@ -1,0 +1,23 @@
+### ch05_structured — 교재 6장 · 구조화 출력 · 멀티모달
+### VS Code 의 REST Client 확장에서 각 요청 위 [Send Request] 를 누른다.
+### 먼저 ./gradlew bootRun 으로 앱을 띄운다.
+
+@host = http://localhost:8080
+
+### 구조화 출력 — 문자열이 아니라 객체
+GET http://localhost:8080/ch05/classify?q=카드가 두 번 결제됐어요
+
+### 목록으로 받기
+POST http://localhost:8080/ch05/keywords
+Content-Type: text/plain
+
+벡터 데이터베이스는 임베딩을 저장하고 유사도로 검색한다.
+관계형 DB 의 인덱스와 달리 "정확히 같은 값"이 아니라 "뜻이 가까운 값"을 찾는다.
+
+### 중첩 구조 — record 안에 record
+POST http://localhost:8080/ch05/company
+Content-Type: text/plain
+
+주식회사 스칼라테크는 클라우드 인프라 회사다.
+영업 담당 김철수(chulsoo@skalatech.example, 010-1234-5678),
+기술 담당 이영희(younghee@skalatech.example) 가 문의를 받는다.
