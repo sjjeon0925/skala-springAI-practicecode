@@ -1,0 +1,17 @@
+### ch12_ops — 교재 13장 · 운영 — 재시도 · 폴백 · 시맨틱 캐시
+### VS Code 의 REST Client 확장에서 각 요청 위 [Send Request] 를 누른다.
+### 먼저 ./gradlew bootRun 으로 앱을 띄운다.
+
+@host = http://localhost:8080
+
+### 재시도 · 폴백
+GET http://localhost:8080/ch12/ask?q=배송 지연 시 보상 규정을 알려줘
+
+### 시맨틱 캐시 — 첫 질문 (miss)
+GET http://localhost:8080/ch12/semantic?q=배송은 얼마나 걸리나요
+
+### 뜻이 같은 질문 (hit)
+GET http://localhost:8080/ch12/semantic?q=배송 기간 알려주세요
+
+### 뜻이 다른 질문 (miss)
+GET http://localhost:8080/ch12/semantic?q=환불은 어떻게 하나요
