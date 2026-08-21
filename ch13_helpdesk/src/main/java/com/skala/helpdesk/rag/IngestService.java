@@ -15,7 +15,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 /**
- * 6장 — RAG 인제스트(Indexing).
+ * 13장 Phase 2 — RAG 인제스트(Indexing).
  *
  * <p>읽기(Reader) → 나누기(Splitter) → 메타데이터 보강 → 저장(VectorStore).
  * 임베딩 호출은 VectorStore 가 알아서 한다.

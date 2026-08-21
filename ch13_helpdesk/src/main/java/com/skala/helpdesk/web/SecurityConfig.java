@@ -18,10 +18,10 @@ import org.springframework.security.web.SecurityFilterChain;
  * {@code curl -u user1:pass}·{@code curl -u admin:admin} 패턴과 맞춘 계정 구성이다.
  *
  * <ul>
- *   <li>{@code user-1}/{@code user-2} — 상담 API(/lab3/chat)를 쓰는 일반 사용자.
+ *   <li>{@code user-1}/{@code user-2} — 상담 API(/chat)를 쓰는 일반 사용자.
  *       {@code OrderRepository}의 주문 소유자 ID와 이름을 맞춰서, 로그인한 사람이
  *       곧 {@code ToolContext}에 들어가는 userId가 되게 했다.</li>
- *   <li>{@code admin} — 담당자 화면(/lab3/admin/**, /lab3/ingest-samples)만 쓸 수 있다.</li>
+ *   <li>{@code admin} — 담당자 화면(/admin/**, /ingest-samples, /inspect)만 쓸 수 있다.</li>
  * </ul>
  *
  * <p>Swagger UI에서 오른쪽 위 "Authorize" 버튼으로 로그인하면 이어지는 호출에 자동으로 붙는다.
@@ -51,13 +51,11 @@ public class SecurityConfig {
                         // 문서·헬스체크는 로그인 없이
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**",
                                 "/actuator/health", "/actuator/prometheus").permitAll()
-                        // 12장 개념 데모 컨트롤러는 이번 실습 범위 밖 — 그대로 열어 둔다
-                        .requestMatchers("/assistant/**").permitAll()
                         // 담당자 전용 — 인제스트 · 승인 · 인제스트 품질 확인(Phase 2 심화)
-                        .requestMatchers("/lab3/admin/**", "/lab3/ingest-samples", "/lab3/inspect")
+                        .requestMatchers("/admin/**", "/ingest-samples", "/inspect")
                                 .hasRole("ADMIN")
                         // 나머지 상담 API는 로그인만 하면 된다(권한은 도구 안에서 별도로 검증)
-                        .requestMatchers("/lab3/**").authenticated()
+                        .requestMatchers("/chat/**").authenticated()
                         .anyRequest().permitAll())
                 .httpBasic(basic -> {})
                 .build();

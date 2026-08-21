@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 한 서비스로 합친 캡스톤이다. Advisor는 양파 껍질처럼 요청을 감싼다 —
  * <b>차단(SafeGuard)은 언제나 저장(Memory)보다 앞</b>이라는 원칙은 그대로 이어진다.
  *
- * <p>엔드포인트 — {@code /lab3/ingest-samples} · {@code /lab3/chat} · {@code /lab3/admin/tickets/*}
+ * <p>엔드포인트 — {@code /ingest-samples} · {@code /chat} · {@code /admin/tickets/*}
  * <pre>
  *   ./gradlew bootRun          # http://localhost:8080
  *   http://localhost:8080/swagger-ui.html

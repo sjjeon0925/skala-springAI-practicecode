@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import com.skala.helpdesk.repository.OrderRepository;
 
 /**
- * 8장 — Tool Calling.
+ * 13장 Phase 4 — Tool Calling(주문 조회).
  *
  * <p>도구를 만들 때의 세 원칙.
  * <ol>

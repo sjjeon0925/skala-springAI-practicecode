@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import io.micrometer.core.instrument.MeterRegistry;
 
 /**
- * 9장 — 감사 로깅(AOP).
+ * 13장 Phase 7 — 감사 로깅(AOP).
  *
  * <p>{@code @Tool} 이 붙은 모든 메서드 호출을 한 곳에서 기록한다.
  * 도구마다 로깅 코드를 넣으면 반드시 빠뜨리는 곳이 생긴다.

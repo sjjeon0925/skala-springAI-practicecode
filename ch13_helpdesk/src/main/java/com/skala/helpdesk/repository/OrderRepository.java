@@ -8,7 +8,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Repository;
 
 /**
- * 13장 — 데이터 접근 계층.
+ * 13장 Phase 4 — 데이터 접근 계층.
  *
  * <p>데모용 인메모리 저장소. 실제로는 JPA·MyBatis Repository가 이 자리에 온다.
  * 도구(OrderTools)는 이 계층을 통해서만 주문에 접근하고, 소유자 검증도 여기서 한다.

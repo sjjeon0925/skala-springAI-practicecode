@@ -1,0 +1,60 @@
+### ch13_helpdesk — 종합실습: HelpDesk AI
+### VS Code REST Client 확장: 각 요청 위 [Send Request] 클릭
+### Basic Auth: user-1/pass, user-2/pass(일반 사용자) · admin/admin(담당자)
+
+### ① 담당자 — 규정 문서 적재 (Phase 2)
+POST http://localhost:8080/ingest-samples
+Authorization: Basic YWRtaW46YWRtaW4=
+
+### ② 담당자 — 인제스트 품질 확인 (Phase 2 심화)
+GET http://localhost:8080/inspect?q=배송비
+Authorization: Basic YWRtaW46YWRtaW4=
+
+### ③ 상담 — RAG 근거 답변 (Phase 3)
+GET http://localhost:8080/chat?q=단순 변심 반품은 며칠 이내인가요&sessionId=s1
+Authorization: Basic dXNlci0xOnBhc3M=
+
+### ④ 상담 — Tool 호출(주문 조회) (Phase 4)
+GET http://localhost:8080/chat?q=제 주문 12345는 지금 어디예요?&sessionId=s1
+Authorization: Basic dXNlci0xOnBhc3M=
+
+### ⑤ 상담 — 대화 메모리(같은 sessionId로 이어 묻기) (Phase 5)
+GET http://localhost:8080/chat?q=그럼 그거 반품 돼요?&sessionId=s1
+Authorization: Basic dXNlci0xOnBhc3M=
+
+### ⑥ 상담 — 승인 게이트(환불 접수, 즉시 처리 안 됨) (Phase 4)
+GET http://localhost:8080/chat?q=환불로 접수해주세요&sessionId=s1
+Authorization: Basic dXNlci0xOnBhc3M=
+
+### ⑦ 담당자 — 대기 중인 환불 요청 확인
+GET http://localhost:8080/admin/tickets/pending
+Authorization: Basic YWRtaW46YWRtaW4=
+
+### ⑧ 담당자 — 환불 승인 (id는 ⑦ 응답에서 확인)
+POST http://localhost:8080/admin/tickets/approve?id=AP-1001
+Authorization: Basic YWRtaW46YWRtaW4=
+
+### ⑨ 권한 격리 — 남의 주문(99999는 user-2 소유)
+GET http://localhost:8080/chat?q=99999 상태 알려줘&sessionId=s1
+Authorization: Basic dXNlci0xOnBhc3M=
+
+### ⑩ 상담 — SSE 스트리밍 (Phase 6)
+GET http://localhost:8080/chat/stream?q=배송은 얼마나 걸리나요&sessionId=s2
+Authorization: Basic dXNlci0xOnBhc3M=
+
+### ⑪ 계측 — 도구 호출 집계 (Phase 8)
+GET http://localhost:8080/actuator/metrics/ai.tool.calls
+
+### ⑫ 계측 — 토큰 사용량 (Phase 8)
+GET http://localhost:8080/actuator/metrics/ai.tokens
+
+### ⑮ 레드팀 — SafeGuard가 민감정보 요청을 차단
+GET http://localhost:8080/chat?q=내 주민등록번호는 123456-1234567이야&sessionId=s1
+Authorization: Basic dXNlci0xOnBhc3M=
+
+### ⑯ 인가 확인 — 일반 사용자가 관리자 전용 API 호출 시 403
+GET http://localhost:8080/inspect?q=배송비
+Authorization: Basic dXNlci0xOnBhc3M=
+
+### ⑰ 인증 확인 — 로그인 없이 호출 시 401
+GET http://localhost:8080/chat?q=아무거나&sessionId=s1

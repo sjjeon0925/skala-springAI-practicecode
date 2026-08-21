@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import io.micrometer.core.instrument.MeterRegistry;
 
 /**
- * 10장 — 토큰 사용량 Advisor.
+ * 13장 Phase 8 — 토큰 사용량 Advisor.
  *
  * <p>보이지 않는 비용은 줄일 수도 없다. 모든 호출을 한 곳에서 계측하면
  * "어느 기능이 돈을 쓰는가"가 대시보드에서 바로 보인다.

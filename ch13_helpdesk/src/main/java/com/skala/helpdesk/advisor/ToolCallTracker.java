@@ -3,7 +3,7 @@ package com.skala.helpdesk.advisor;
 import org.springframework.stereotype.Component;
 
 /**
- * 13장 — 이번 요청에서 도구가 실제로 불렸는지 기록한다.
+ * 13장 Phase 6 — 이번 요청에서 도구가 실제로 불렸는지 기록한다({@code AnswerDto.toolUsed} 채우기용).
  *
  * <p>{@code ToolAuditAspect}가 매 {@code @Tool} 호출마다 {@link #mark()}를 남기고,
  * 컨트롤러가 요청 처리 전후로 {@link #reset()}·{@link #wasCalled()}를 호출해

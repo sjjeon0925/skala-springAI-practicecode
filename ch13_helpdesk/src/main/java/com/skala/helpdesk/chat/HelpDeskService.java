@@ -60,7 +60,7 @@ public class HelpDeskService {
      *
      * <p>토큰이 조각조각 오는 동안은 {@code toolCallTracker}로 도구 사용 여부를
      * 판단할 수 없다(끝나기 전이라서) — 그래서 스트리밍 응답에는 {@code toolUsed}·
-     * {@code sources}를 함께 실어 보내지 않는다. 필요하면 동기 API(/lab3/chat)를 쓴다.
+     * {@code sources}를 함께 실어 보내지 않는다. 필요하면 동기 API(/chat)를 쓴다.
      */
     public Flux<String> stream(String question, String sessionId, String userId) {
         return chat.prompt()
@@ -71,7 +71,7 @@ public class HelpDeskService {
                 .content();
     }
 
-    /** 대화 이력 확인 — Advisor 순서 실험(차단 문구가 이력에 남는지)에 쓴다. */
+    /** 대화 이력 확인 — 세션의 대화가 실제로 저장·기억되고 있는지(Phase 5 메모리) 눈으로 확인할 때 쓴다. */
     public List<String> history(String sessionId) {
         return chatMemory.get(sessionId).stream()
                 .map(m -> m.getMessageType() + ": " + m.getText())

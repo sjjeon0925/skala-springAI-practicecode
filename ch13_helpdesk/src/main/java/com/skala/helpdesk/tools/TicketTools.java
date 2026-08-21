@@ -14,7 +14,7 @@ import org.springframework.ai.tool.annotation.ToolParam;
 import org.springframework.stereotype.Component;
 
 /**
- * 9장 — 승인 게이트(Human-in-the-loop).
+ * 13장 Phase 4 — 승인 게이트(Human-in-the-loop, 티켓 접수).
  *
  * <p>자율성의 크기는 <b>되돌릴 수 있는 정도</b>에 맞춘다.
  * 조회는 자유롭게, 쓰기는 제한적으로, 되돌릴 수 없는 일은 사람의 승인을 거쳐.
